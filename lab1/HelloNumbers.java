@@ -7,5 +7,6 @@ public class HelloNumbers {
       x += 1;
       System.out.print(y + " ");
     }
+    System.out.println();
   }
 }
