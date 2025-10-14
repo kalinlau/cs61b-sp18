@@ -98,8 +98,7 @@ public class LinkedListDeque<T> {
 
   public T removeFirst() {
     if (this.isEmpty()) {
-      System.err.println("ERROR: empty deque has nothing to remove");
-      System.exit(-1);
+      return null;
     }
     TNode first = fp.next;
     fp.next = first.next;
@@ -110,8 +109,7 @@ public class LinkedListDeque<T> {
 
   public T removeLast() {
     if (this.isEmpty()) {
-      System.err.println("ERROR: empty deque has nothing to remove");
-      System.exit(-1);
+      return null;
     }
     TNode last = rp.prev;
     rp.prev = last.prev;
