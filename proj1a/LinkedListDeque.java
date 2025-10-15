@@ -1,9 +1,9 @@
 /**
- * Deque: Linked List Version
+ * Project 1A, part I, Linked List Deque
+ *
+ * <p>Linked List Implementation for CS61b SP18
  *
  * @author: LAU Kalin
- * @date: 10/11/25
- * @description: deque implementation via linked list data structure
  */
 public class LinkedListDeque<T> {
   private int size;
@@ -38,26 +38,25 @@ public class LinkedListDeque<T> {
   }
 
   /** Create a deep copy of another LLD */
-  public LinkedListDeque(LinkedListDeque<T> other) {
-    // [DESIGN] iterative OR recursive? BOTH works, recursive needs helper_func
-    this();
+  // public LinkedListDeque(LinkedListDeque<T> other) {
+  // this();
 
-    if (other == null) {
-      System.err.println("ERROR: null deque copy");
-      System.exit(-1);
-    }
-    deepCopy(other.fp.next);
-  }
+  // if (other == null) {
+  // System.err.println("ERROR: null deque copy");
+  // System.exit(-1);
+  // }
+  // deepCopy(other.fp.next);
+  // }
 
-  private void deepCopy(TNode node) {
-    while (node.next != null) {
-      TNode newNode = new TNode(node.item, rp.prev, rp);
-      rp.prev.next = newNode;
-      rp.prev = newNode;
-      size += 1;
-      node = node.next;
-    }
-  }
+  // private void deepCopy(TNode node) {
+  // while (node.next != null) {
+  // TNode newNode = new TNode(node.item, rp.prev, rp);
+  // rp.prev.next = newNode;
+  // rp.prev = newNode;
+  // size += 1;
+  // node = node.next;
+  // }
+  // }
 
   /** Add items in front */
   public void addFirst(T item) {
