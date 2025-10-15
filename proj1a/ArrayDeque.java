@@ -100,40 +100,9 @@ public class ArrayDeque<T> {
    * Extend and Update the state of the ArrayDeque
    *
    * @param src: origin source T array.
+   * @param smaller: boolean variable to shrink or expand size
    * @return void.
    */
-  // private void arrayExtend(T[] src) {
-  // int newLen = src.length * delta;
-  // T[] Dnew = (T[]) new Object[newLen];
-  // int newBEG = newLen / 2;
-  // int newNextFirst = newBEG;
-  // int newNextLast = newBEG + 1;
-  // for (int i = 0; i < size; i++) {
-  // int currentLastIndex = getIndex(nextLast - 1 - i, src);
-  // Dnew[newNextFirst] = src[currentLastIndex];
-  // newNextFirst = getIndex(newNextFirst - 1, Dnew);
-  // }
-  // D = Dnew;
-  // nextFirst = newNextFirst;
-  // nextLast = newNextLast;
-  // }
-
-  // private void arrayShink(T[] src) {
-  // int newLen = src.length / delta;
-  // T[] Dnew = (T[]) new Object[newLen];
-  // int newBEG = newLen / 2;
-  // int newNextFirst = newBEG;
-  // int newNextLast = newBEG + 1;
-  // for (int i = 0; i < size; i++) {
-  // int currentLastIndex = getIndex(nextLast - 1 - i, src);
-  // Dnew[newNextFirst] = src[currentLastIndex];
-  // newNextFirst = getIndex(newNextFirst - 1, Dnew);
-  // }
-  // D = Dnew;
-  // nextFirst = newNextFirst;
-  // nextLast = newNextLast;
-  // }
-
   private void reSize(T[] src, boolean smaller) {
     int newLen = smaller ? src.length >> 2 : src.length << 2;
     T[] Dnew = (T[]) new Object[newLen];
