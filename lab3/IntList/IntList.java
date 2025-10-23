@@ -173,18 +173,17 @@ public class IntList {
   }
 
   public static IntList reverse(IntList A){
-      if (A == null) {
-          return null;
-      }
-      IntList B = null;
-      IntList node = A;
-      while (node != null){
-          IntList tmp = node;
-          node = node.rest;
-          tmp.rest = B;
-          B = tmp;
-      }
-      return B;
+    if (A == null){
+        return null;
+    }
+    IntList b = null;
+    while (A != null){
+      IntList tmp = A;
+      A = A.rest;
+      tmp.rest = b;
+      b = tmp;
+    }
+    return b;
   }
 
   /**
