@@ -145,13 +145,46 @@ public class IntList {
     }
   }
 
-  public static IntList reverse(IntList A) {
+  public static IntList reverseObsoluate(IntList A) {
     if (A == null || A.rest == null) {
       return A;
     } else {
       // WARNING: VERY INEFFICIENT
       return catenate(reverse(A.rest), new IntList(A.first, null));
     }
+  }
+
+  // reverse a list, destructive
+  public static IntList reverseIterative(IntList A){
+      if (A == null) {
+          return null;
+      }
+      IntList aplus = new IntList(0, A);
+      IntList bplus = new IntList();
+      while (aplus.rest != null){
+          // add to b front
+          IntList tmp = new IntList(aplus.rest.first, null);
+          tmp.rest = bplus.rest;
+          bplus.rest = tmp;
+          // remove a front
+          aplus.rest = aplus.rest.rest;
+      }
+      return bplus.rest;
+  }
+
+  public static IntList reverse(IntList A){
+      if (A == null) {
+          return null;
+      }
+      IntList B = null;
+      IntList node = A;
+      while (node != null){
+          IntList tmp = node;
+          node = node.rest;
+          tmp.rest = B;
+          B = tmp;
+      }
+      return B;
   }
 
   /**
