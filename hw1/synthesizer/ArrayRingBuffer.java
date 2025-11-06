@@ -39,8 +39,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
   }
 
   /**
-   * Dequeue oldest item in the ring buffer. If the buffer is empty, then throw
-   * new
+   * Dequeue oldest item in the ring buffer. If the buffer is empty, then throw new
    * RuntimeException("Ring buffer underflow"). Exceptions covered Monday.
    */
   public T dequeue() {
@@ -85,7 +84,9 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
       if (!hasNext()) {
         throw new NoSuchElementException("Out of BoundedQueue Size");
       }
-      return ArrayRingBuffer.this.dequeue();
+      T result = ArrayRingBuffer.this.dequeue();
+      ArrayRingBuffer.this.enqueue(result);
+      return result;
     }
   }
 }
