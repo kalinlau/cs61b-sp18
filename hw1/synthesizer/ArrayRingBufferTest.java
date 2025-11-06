@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -47,6 +48,7 @@ public class ArrayRingBufferTest {
   @Test
   @Tag("ArrayRingBuffer")
   @Tag("dev")
+  @DisplayName("DEV Test: Nested Iteration")
   void testArray() {
     // String[] expected = {"0", "1", "2", "3", "4", "5", "6", "7"};
     int[] expected1 = {0, 1, 2, 3, 4, 5, 6, 7};
@@ -75,6 +77,7 @@ public class ArrayRingBufferTest {
   @Test
   @Tag("ArrayRingBuffer")
   @Tag("dev")
+  @DisplayName("DEV Test:Iterable")
   void testForeach() {
     int[] expected1 = {0, 1, 2, 3, 4, 5, 6, 7};
     int i = 0;

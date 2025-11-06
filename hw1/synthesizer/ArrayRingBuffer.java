@@ -1,6 +1,5 @@
 package synthesizer;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -40,7 +39,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
   }
 
   /**
-   * Dequeue oldest item in the ring buffer. If the buffer is empty, then throw new
+   * Dequeue oldest item in the ring buffer. If the buffer is empty, then throw
+   * new
    * RuntimeException("Ring buffer underflow"). Exceptions covered Monday.
    */
   public T dequeue() {
@@ -58,22 +58,15 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
   /** Return oldest item, but don't remove it. */
   public T peek() {
+    if (this.fillCount == 0) {
+      throw new RuntimeException("Ring buffer underflow");
+    }
     return rb[first];
   }
 
-  public String toString() {
-    return Arrays.toString(rb);
-  }
-
-  @Override
-  public boolean isEmpty() {
-    return this.fillCount == 0;
-  }
-
-  @Override
-  public boolean isFull() {
-    return this.fillCount == this.capacity;
-  }
+  // public String toString() {
+  // return Arrays.toString(rb);
+  // }
 
   // DONE: When you get to part 5, implement the needed code to support iteration.
   @Override
