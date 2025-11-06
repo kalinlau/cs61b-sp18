@@ -14,6 +14,7 @@ public class ArrayRingBufferTest {
   @Test
   @Tag("ArrayRingBuffer")
   @BeforeEach
+  @DisplayName("creation")
   void testConstruct() {
     q = new ArrayRingBuffer<>(8);
     for (int i = 0; i < q.capacity; i++) {
@@ -26,6 +27,7 @@ public class ArrayRingBufferTest {
 
   @Test
   @Tag("ArrayRingBuffer")
+  @DisplayName("dequeue")
   void testDeq() {
     for (int j = 0; j < q.capacity(); j++) {
       String ans = q.dequeue();
@@ -41,6 +43,7 @@ public class ArrayRingBufferTest {
 
   @Test
   @Tag("ArrayRingBuffer")
+  @DisplayName("size")
   void testSize() {
     assertEquals(8, q.fillCount());
   }
@@ -48,10 +51,10 @@ public class ArrayRingBufferTest {
   @Test
   @Tag("ArrayRingBuffer")
   @Tag("dev")
-  @DisplayName("DEV Test: Nested Iteration")
+  @DisplayName("ring FIFO")
   void testArray() {
     // String[] expected = {"0", "1", "2", "3", "4", "5", "6", "7"};
-    int[] expected1 = {0, 1, 2, 3, 4, 5, 6, 7};
+    int[] expected1 = { 0, 1, 2, 3, 4, 5, 6, 7 };
     assertEquals(Arrays.toString(expected1), q.toString());
 
     q.dequeue();
@@ -59,9 +62,9 @@ public class ArrayRingBufferTest {
     q.dequeue();
     assertEquals(5, q.fillCount());
 
-    Integer[] expected2 = {null, null, null, 3, 4, 5, 6, 7};
+    Integer[] expected2 = { null, null, null, 3, 4, 5, 6, 7 };
     assertEquals(Arrays.toString(expected2), q.toString());
-    Integer[] expected3 = {8, 9, 10, 3, 4, 5, 6, 7};
+    Integer[] expected3 = { 8, 9, 10, 3, 4, 5, 6, 7 };
     q.enqueue("8");
     q.enqueue("9");
     q.enqueue("10");
@@ -76,15 +79,19 @@ public class ArrayRingBufferTest {
 
   @Test
   @Tag("ArrayRingBuffer")
-  @Tag("dev")
-  @DisplayName("DEV Test:Iterable")
+  @DisplayName("nested foreach")
   void testForeach() {
-    int[] expected1 = {0, 1, 2, 3, 4, 5, 6, 7};
-    int i = 0;
-    for (String string : q) {
-      assertEquals(Integer.toString(expected1[i++]), string);
+    int[] expected1 = { 0, 1, 2, 3, 4, 5, 6, 7 };
+    int j = 0;
+    for (String s1 : q) {
+      int i = 0;
+      for (String s2 : q) {
+        assertEquals(Integer.toString(expected1[i++]), s2);
+      }
+      assertEquals(Integer.toString(expected1[j++]), s1);
     }
 
-    assertTrue(q.isEmpty());
+    assertTrue(!q.isEmpty());
+    assertTrue(q.isFull());
   }
 }

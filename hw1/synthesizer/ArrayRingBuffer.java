@@ -74,9 +74,17 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
   }
 
   private class Bterator implements Iterator<T> {
+    private int timer;
+    private int capacity;
+
+    public Bterator() {
+      capacity = ArrayRingBuffer.this.capacity();
+      timer = ArrayRingBuffer.this.first;
+    }
+
     @Override
     public boolean hasNext() {
-      return !ArrayRingBuffer.this.isEmpty();
+      return timer <= ArrayRingBuffer.this.last;
     }
 
     @Override
@@ -84,8 +92,8 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
       if (!hasNext()) {
         throw new NoSuchElementException("Out of BoundedQueue Size");
       }
-      T result = ArrayRingBuffer.this.dequeue();
-      ArrayRingBuffer.this.enqueue(result);
+      T result = ArrayRingBuffer.this.rb[timer++];
+      timer = (timer >= capacity) ? timer % capacity : timer;
       return result;
     }
   }
